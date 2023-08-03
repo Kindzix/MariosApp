@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { InfoComponent } from "../info/info.component";
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: 'app-received-marios',
   templateUrl: './received-marios.component.html',

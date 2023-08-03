@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/home/home.component';
 import { InfoComponent } from './core/info/info.component';
-import { AddMariosComponent } from './core/add-marios/add-marios.component';
 import { ReceivedMariosComponent } from './core/received-marios/received-marios.component';
 import { SentMariosComponent } from './core/sent-marios/sent-marios.component';
 import { InfoMariosComponent } from './core/info-marios/info-marios.component';
@@ -16,15 +15,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
-
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     InfoComponent,
-    AddMariosComponent,
     ReceivedMariosComponent,
     SentMariosComponent,
     InfoMariosComponent,
@@ -40,7 +39,10 @@ import {MatInputModule} from "@angular/material/input";
     MatIconModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
