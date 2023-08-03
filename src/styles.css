@@ -1,1 +1,181 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+html {
+  height: 100%;
+  background: rgb(56, 34, 195);
+  background: linear-gradient(0deg, rgba(56, 34, 195, 1) 45%, rgba(253, 45, 73, 1) 100%);
+}
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-mario-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.rectangle-mario {
+  width: 333px;
+  height: 163px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.rectangle-mario::before {
+  content: "READ MORE";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 41px;
+  letter-spacing: 0.065em;
+  color: #FFFFFF;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rectangle-mario:hover::before {
+  opacity: 1;
+}
+
+.read_more {
+  top: 50px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 41px;
+  letter-spacing: 0.065em;
+  color: #FFFFFF;
+}
+
+.image-user {
+  position: absolute;
+  left: 5%;
+  top: 15%;
+}
+
+.image-user img {
+  width: 17px;
+  height: 17px;
+}
+
+.from {
+  position: absolute;
+  width: 194px;
+  height: 25px;
+  top: -4.5px;
+  left: 25px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #EA808E;
+}
+
+.image-star {
+  position: absolute;
+  left: 5.5%;
+  top: 30%;
+}
+
+.image-star img {
+  width: 17px;
+  height: 17px;
+}
+
+.marios {
+  position: absolute;
+  width: 194px;
+  height: 25px;
+  top: -3px;
+  left: 25px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #494949;
+}
+
+.theme {
+  position: absolute;
+  left: 20px;
+  top: 80px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #494949;
+}
+
+.message {
+  position: absolute;
+  width: 280px;
+  height: 40px;
+  left: 20px;
+  top: 110px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #A2A2A2;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.more {
+  position: absolute;
+  width: 309px;
+  height: 40px;
+  left: 230px;
+  top: 130px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #494949;
+}
+
+.back-button-text {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  left: -15px;
+  top: -12px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 23px;
+  text-align: left;
+}
+
+.grid-mario {
+  display: flex;
+  justify-content: space-between;
+}
+

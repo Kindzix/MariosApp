@@ -1,0 +1,43 @@
+<div class="main-page">
+  <div class="back-button-row">
+    <button mat-flat-button (click)="onClick()">
+      <div class="back-button-text">BACK</div>
+      <div class="image-vector">
+        <img src="assets/back.png" alt="mario" />
+      </div>
+    </button>
+  </div>
+  <div class="grid-sent-marios">
+    <div class="rectangle-add">
+        <div class="image-head">
+          <div class="image-user-sent"><img src="assets/user-sent.png" alt="mario" /></div>
+          <div class="recognize">
+            <mat-form-field>
+              <mat-label>Who you want to recognize?</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+        </div>
+      <div class="separator"></div>
+        <form (submit)="onSubmit()">
+          <div class="input-container-category">
+            <label for="name">Select category:</label>
+            <input type="text" id="name" [(ngModel)]="marioName" name="name" required>
+          </div>
+          <div class="input-container">
+            <label for="marios">Marios:</label>
+            <input type="number" id="marios" [(ngModel)]="marioMarios" name="marios" required>
+          </div>
+          <div class="input-container">
+            <label for="theme">Theme:</label>
+            <input type="text" id="theme" [(ngModel)]="marioTheme" name="theme" required>
+          </div>
+          <div class="input-container">
+            <label for="message">Message:</label>
+            <textarea id="message" [(ngModel)]="marioMessage" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" mat-raised-button color="primary">Add Mario</button>
+        </form>
+    </div>
+  </div>
+</div>

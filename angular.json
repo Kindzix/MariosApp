@@ -63,7 +63,8 @@
               "browserTarget": "MariosApp:build:production"
             },
             "development": {
-              "browserTarget": "MariosApp:build:development"
+              "browserTarget": "MariosApp:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

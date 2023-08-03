@@ -1,0 +1,35 @@
+<div class="main-page">
+  <div class="back-button-row">
+    <button mat-flat-button (click)="onClick()">
+      <div class="back-button-text">BACK</div>
+      <div class="image-vector">
+        <img src="assets/back.png" alt="mario" />
+      </div>
+    </button>
+  </div>
+  <div class="grid-received-marios">
+    <div class="received-marios">RECEIVED MARIOS:</div>
+    <div class="grid-mario-container">
+      <ng-container *ngFor="let mario of receivedMariosData | slice:0:9">
+        <div class="grid-mario">
+            <div class="rectangle-mario">
+              <div class="image-user">
+                <img src="assets/user.png" alt="mario" />
+                <div class="from">From: {{ mario.sender.name }}</div>
+              </div>
+              <div class="image-star">
+                <img src="assets/star.png" alt="mario" />
+                <div class="marios">{{ mario.marios }}</div>
+              </div>
+              <div class="theme">T: {{ mario.theme }}</div>
+              <div class="message">{{ mario.message.length > 30 ? mario.message.slice(0, 60) + '...' : mario.message }}</div>
+              <div class="more">See more</div>
+              <div class="example-button-pop">
+                <button mat-button color="primary" (click)="Openpopup()"></button>
+              </div>
+            </div>
+          </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

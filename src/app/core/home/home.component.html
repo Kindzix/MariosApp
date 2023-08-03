@@ -1,0 +1,65 @@
+<div class="main-page">
+  <div class="grid">
+    <div class="received">
+      <div class="marios-section">
+        <div class="rectangle">
+          <div class="marios-text">RECEIVED MARIOS:</div>
+          <div class="image">
+            <img src="assets/mario.png" alt="mario" />
+          </div>
+          <div class="marios-count">{{ receivedMariosCount }}</div>
+          <div class="example-button-row">
+            <button mat-button (click)="onClickReceived()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sent">
+      <div class="marios-section">
+        <div class="rectangle">
+          <div class="marios-text">SENT MARIOS:</div>
+          <div class="image">
+            <img src="assets/mario.png" alt="mario" />
+          </div>
+          <div class="marios-count">{{ sentMariosCount }}</div>
+          <div class="example-button-row">
+            <button mat-button (click)="onClickSent()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mario-button-row">
+      <button mat-flat-button (click)="onClickAdd()">
+        <div class="button-text">ADD MARIOS</div>
+        <div class="image-vector">
+          <img src="assets/img.png" alt="mario" />
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="grid-last-marios">
+    <div class="last_marios">LAST MARIOS:</div>
+    <div class="grid-mario-container">
+      <ng-container *ngFor="let mario of lastMariosData | slice:0:9">
+        <div class="grid-mario">
+            <div class="rectangle-mario">
+              <div class="image-user">
+                <img src="assets/user.png" alt="mario" />
+                <div class="from">From: {{ mario.sender.name }}</div>
+              </div>
+              <div class="image-star">
+                <img src="assets/star.png" alt="mario" />
+                <div class="marios">{{ mario.marios }}</div>
+              </div>
+              <div class="theme">T: {{ mario.theme }}</div>
+              <div class="message">{{ mario.message.length > 30 ? mario.message.slice(0, 60) + '...' : mario.message }}</div>
+              <div class="more"> See more</div>
+              <div class="example-button-pop">
+                <button mat-button color="primary" (click)="Openpopup()"></button>
+              </div>
+            </div>
+          </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
