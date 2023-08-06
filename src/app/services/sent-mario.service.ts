@@ -7,8 +7,10 @@ import {SentMario, SentMarioPayload} from '../interfaces/sent-mario';
   providedIn: 'root',
 })
 export class SentMarioService {
-  private readonly sentMarioUrl = '/api/marios/send';
-  private readonly sentMarioAllUrl = '/api/marios/sent/all';
+  private readonly sendMariosUrl = '/api/marios/sent/all';
+  private readonly sentMariosUrl = '/api/marios/sent';
+  private readonly receivedMariosUrl = '/api/marios/received';
+  private readonly sentMarioAddUrl = '/api/marios/send';
   private sentMarioData: SentMario[] = [];
   private sentMarios$ = new BehaviorSubject<SentMario[]>([]);
 
@@ -16,20 +18,38 @@ export class SentMarioService {
 
   get sentMarios(): Observable<SentMario[]> {
     if (this.sentMarioData.length === 0) {
-      this.fetchSentMarios();
+      this.fetchSendMarios();
     }
     return this.sentMarios$.asObservable();
   }
 
-  fetchSentMarios() {
-    return this.http.get<SentMario[]>(this.sentMarioAllUrl).subscribe((data) => {
+  fetchSendMarios() {
+    return this.http.get<SentMario[]>(this.sendMariosUrl).subscribe((data) => {
       this.sentMarioData = data;
       this.sentMarios$.next(data);
     });
   }
 
+  fetchSentMarios(senderUuid: string) {
+    return this.http.get<SentMario[]>(`${this.sentMariosUrl}/${senderUuid}`)
+      .subscribe((data) => {
+        this.sentMarioData = data;
+        this.sentMarios$.next(data);
+        console.log(`Fetched ${data.length} sent Marios.`);
+      });
+  }
+
+  fetchReceivedMarios(recipientUuid: string) {
+    return this.http.get<SentMario[]>(`${this.receivedMariosUrl}/${recipientUuid}`)
+      .subscribe((data) => {
+        this.sentMarioData = data;
+        this.sentMarios$.next(data);
+        console.log(`Fetched ${data.length} received Marios.`);
+      });
+  }
+
   addSentMarios(payload: SentMarioPayload ) {
-    return this.http.post<SentMario>(this.sentMarioUrl, payload).subscribe((data) => {
+    return this.http.post<SentMario>(this.sentMarioAddUrl, payload).subscribe((data) => {
       this.sentMarioData.push(data);
       this.sentMarios$.next([...this.sentMarioData]);
     });

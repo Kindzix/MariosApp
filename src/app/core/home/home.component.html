@@ -42,23 +42,23 @@
     <div class="grid-mario-container">
       <ng-container *ngFor="let mario of lastMariosData | slice:0:9">
         <div class="grid-mario">
-            <div class="rectangle-mario">
-              <div class="image-user">
-                <img src="assets/user.png" alt="mario" />
-                <div class="from">From: {{ mario.sender.name }}</div>
-              </div>
-              <div class="image-star">
-                <img src="assets/star.png" alt="mario" />
-                <div class="marios">{{ mario.marios }}</div>
-              </div>
-              <div class="theme">T: {{ mario.theme }}</div>
-              <div class="message">{{ mario.message.length > 30 ? mario.message.slice(0, 60) + '...' : mario.message }}</div>
-              <div class="more"> See more</div>
-              <div class="example-button-pop">
-                <button mat-button color="primary" (click)="Openpopup()"></button>
-              </div>
+          <div class="rectangle-mario">
+            <div class="image-user">
+              <img src="assets/user.png" alt="mario" />
+              <div class="from">From: {{ mario.sender.firstName }} {{ mario.sender.lastName }}</div>
+            </div>
+            <div class="image-star">
+              <img src="assets/star.png" alt="mario" />
+              <div class="marios">{{ mario.mario.type}}</div>
+            </div>
+            <div class="theme">T: {{ mario.theme }}</div>
+            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 60) + '...' : mario.comment }}</div>
+            <div class="more"> See more</div>
+            <div class="example-button-pop">
+              <button mat-button color="primary" (click)="Openpopup()"></button>
             </div>
           </div>
+        </div>
       </ng-container>
     </div>
   </div>
