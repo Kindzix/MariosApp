@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {SentMario} from "../../interfaces/sent-mario";
 
 
 @Component({
@@ -7,14 +8,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './info-marios.component.html',
   styleUrls: ['./info-marios.component.css']
 })
-export class InfoMariosComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+export class InfoMariosComponent {
+  constructor(
+    public dialogRef: MatDialogRef<InfoMariosComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { mario: SentMario }
+  ) { }
 
-  ngOnInit() {
-    this.infoMario()
-  }
-
-  infoMario() {
-    this.http.get('/api/marios').subscribe(data => console.log(data))
+  onClickClose(): void {
+    this.dialogRef.close();
   }
 }

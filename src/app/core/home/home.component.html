@@ -49,13 +49,33 @@
             </div>
             <div class="image-star">
               <img src="assets/star.png" alt="mario" />
-              <div class="marios">{{ mario.mario.type}}</div>
+              <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
             </div>
-            <div class="theme">T: {{ mario.theme }}</div>
+            <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>
             <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 60) + '...' : mario.comment }}</div>
-            <div class="more"> See more</div>
+            <div class="more">See more</div>
             <div class="example-button-pop">
-              <button mat-button color="primary" (click)="Openpopup()"></button>
+              <button mat-button color="primary" (click)="Openpopup(mario)"></button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let mario of lastReceivedMariosData">
+        <div class="grid-mario">
+          <div class="rectangle-mario">
+            <div class="image-user">
+              <img src="assets/user.png" alt="mario" />
+              <div class="to">To: {{ mario.recipientFirstNamesList }} {{ mario.recipientLastNamesList }}</div>
+            </div>
+            <div class="image-star">
+              <img src="assets/star.png" alt="mario" />
+              <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
+            </div>
+            <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>
+            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 60) + '...' : mario.comment }}</div>
+            <div class="more">See more</div>
+            <div class="example-button-pop">
+              <button mat-button color="primary" (click)="Openp(mario)"></button>
             </div>
           </div>
         </div>

@@ -1,1 +1,20 @@
-<p>info-marios works!</p>
+<h1 mat-dialog-title></h1>
+<div mat-dialog-content>
+  <div class="grid-info">
+    <div class="grid-mario-info">
+      <div class="from-info">To: {{ data.mario.recipientFirstName}} {{ data.mario.recipientLastName}} </div>
+      <div class="image-star-info">
+        <img src="assets/star.png" alt="mario" />
+        <div class="marios-info">{{ data.mario.mario.type }}</div>
+      </div>
+    </div>
+    <div class="theme-info">T: {{ data.mario.theme }}</div>
+    <div class="message-info">{{ data.mario.comment }}</div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="mario-close-button-row">
+    <button mat-icon-button (click)="onClickClose()">
+      <mat-icon>close</mat-icon></button>
+  </div>
+</div>

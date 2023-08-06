@@ -9,12 +9,16 @@ export interface SentMario {
   comment: string;
   sender: User;
   recipients: User[];
+  recipientFirstNamesList: string[];
+  recipientLastNamesList: string[];
+  recipientLastName: string;
+  recipientFirstName: string;
 }
 
 export interface SentMarioPayload {
   mario: Mario;
   theme: string;
   comment: string;
-  sender: User;
-  recipients: User[];
+  sender: string;
+  recipients: string[];
 }

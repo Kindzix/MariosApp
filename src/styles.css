@@ -91,6 +91,20 @@ html {
   color: #EA808E;
 }
 
+.to {
+  position: absolute;
+  width: 194px;
+  height: 25px;
+  top: -4.5px;
+  left: 25px;
+  font-family: 'Open Sans', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #EA808E;
+}
+
 .image-star {
   position: absolute;
   left: 5.5%;

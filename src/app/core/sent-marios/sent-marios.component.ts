@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { InfoComponent } from "../info/info.component";
 import { Router } from "@angular/router";
+import {SentMario} from "../../interfaces/sent-mario";
+import {SentMarioService} from "../../services/sent-mario.service";
+import {last} from "rxjs";
+import {InfoMariosComponent} from "../info-marios/info-marios.component";
 
 @Component({
   selector: 'app-sent-marios',
@@ -10,49 +13,39 @@ import { Router } from "@angular/router";
   styleUrls: ['./sent-marios.component.css']
 })
 export class SentMariosComponent implements OnInit {
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
-  sentMariosData!: any[];
-  Mario: any | null = null;
+  sentMariosData: SentMario[] = [];
 
+  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router, private sentMarioService: SentMarioService) { }
   ngOnInit() {
-    this.sentMarios();
+    this.fetchData();
   }
 
-  sentMarios() {
-    const sampleUser = {
-      name: "John Doe",
-      sentMarios: [
-        {
-          id: 1,
-          marios: 5,
-          theme: "Thank you for your help!",
-          message: "You're the best!",
-          receiver: { name: "Alice" }
-        },
-        {
-          id: 2,
-          marios: 3,
-          theme: "Thanks for the support!",
-          message: "You rock!",
-          receiver: { name: "Bob" }
-        }
-      ],
-    };
-    this.sentMariosData = sampleUser.sentMarios;
-  }
-
-  Openpopup(mario: any) {
-    this.Mario = mario;
-    this.dialog.open(InfoComponent, {
+  Openp(mario: SentMario) {
+    this.dialog.open(InfoMariosComponent, {
       width: '714px',
       height: '222px',
-      data: this.Mario
+      data: { mario: mario }
     });
   }
 
   onClick() {
     this.router.navigateByUrl("");
+  }
+
+  fetchData() {
+    const senderUuid = 'af6b2daf-e36c-43d5-82e5-b310033e49bc';
+
+    this.sentMarioService.fetchSentMarios(senderUuid);
+
+    this.sentMarioService.sentMarios.subscribe((sentMarios) => {
+      this.updateSentLastMariosData(sentMarios);
+    });
+
+  }
+
+  private updateSentLastMariosData(marios: SentMario[]) {
+    this.sentMariosData = marios.slice(0, 9);
   }
 
 }

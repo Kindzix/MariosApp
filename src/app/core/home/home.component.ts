@@ -4,6 +4,8 @@ import { InfoComponent } from "../info/info.component";
 import { Router } from "@angular/router";
 import { SentMarioService } from "../../services/sent-mario.service";
 import { SentMario } from "../../interfaces/sent-mario";
+import { last } from "rxjs";
+import {InfoMariosComponent} from "../info-marios/info-marios.component";
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
   receivedMariosCount: number = 0;
   sentMariosCount: number = 0;
   lastMariosData: SentMario[] = [];
+  lastReceivedMariosData: SentMario[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -25,10 +28,19 @@ export class HomeComponent implements OnInit {
     this.fetchData();
   }
 
-  Openpopup() {
+  Openpopup(mario: SentMario) {
     this.dialog.open(InfoComponent, {
       width: '714px',
-      height: '222px'
+      height: '222px',
+      data: { mario: mario }
+    });
+  }
+
+  Openp(mario: SentMario) {
+    this.dialog.open(InfoMariosComponent, {
+      width: '714px',
+      height: '222px',
+      data: { mario: mario }
     });
   }
 
@@ -45,25 +57,29 @@ export class HomeComponent implements OnInit {
   }
 
   fetchData() {
-    const senderUuid = '5bdd60f5-dcf9-45f8-8093-c4b08834ebc8';
-    const recipientUuid = '5bdd60f5-dcf9-45f8-8093-c4b08834ebc8';
+    const senderUuid = 'af6b2daf-e36c-43d5-82e5-b310033e49bc';
+    const recipientUuid = 'af6b2daf-e36c-43d5-82e5-b310033e49bc';
 
     this.sentMarioService.fetchSentMarios(senderUuid);
     this.sentMarioService.fetchReceivedMarios(recipientUuid);
 
     this.sentMarioService.sentMarios.subscribe((sentMarios) => {
       this.sentMariosCount = sentMarios.length;
-      this.updateLastMariosData(sentMarios);
+      this.updateSentLastMariosData(sentMarios);
     });
 
-    this.sentMarioService.sentMarios.subscribe((receivedMarios) => {
+    this.sentMarioService.receivedMarios.subscribe((receivedMarios) => {
       this.receivedMariosCount = receivedMarios.length;
-      this.updateLastMariosData(receivedMarios);
+      this.updateReceivedLastMariosData(receivedMarios);
     });
   }
 
-  private updateLastMariosData(marios: SentMario[]) {
-    this.lastMariosData = [...this.lastMariosData, ...marios];
-    this.lastMariosData = this.lastMariosData.slice(0, 9);
+  private updateSentLastMariosData(marios: SentMario[]) {
+    this.lastReceivedMariosData = marios.slice(0, 9);
   }
+
+  private updateReceivedLastMariosData(marios: SentMario[]) {
+    this.lastMariosData = marios.slice(0, 9);
+  }
+
 }

@@ -17,7 +17,7 @@
               <mat-label>Who you want to recognize?</mat-label>
               <mat-chip-grid #chipGrid aria-label="Enter user">
                 <mat-chip-row *ngFor="let user of users" (removed)="remove(user)">
-                  {{ user }}
+                  {{ user.firstName }} {{ user.lastName }}
                   <button matChipRemove [attr.aria-label]="'remove ' + user">
                     <mat-icon>cancel</mat-icon>
                   </button>
@@ -27,9 +27,6 @@
                      [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"/>
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-                  {{ user }}
-                </mat-option>
               </mat-autocomplete>
             </mat-form-field>
           </div>
@@ -38,10 +35,10 @@
           <div class="input-container-category">
             <div class="category-label">Select category:</div>
             <mat-chip-listbox aria-label="Fish selection">
-              <mat-chip-option color="primary" *ngFor="let category of categories.slice(0, 5)">
+              <mat-chip-option color="primary" *ngFor="let category of categories" [value]="category">
                 <div class="chip-content">
                   <div class="category-icon"></div>
-                  <div class="category-name">{{ category }}</div>
+                  <div class="category-name">{{ category.type }}</div>
                 </div>
               </mat-chip-option>
             </mat-chip-listbox>
