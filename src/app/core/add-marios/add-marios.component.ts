@@ -9,10 +9,9 @@ import { startWith, map } from 'rxjs/operators';
 import { SentMarioService } from '../../services/sent-mario.service';
 import { MarioService } from '../../services/mario.service';
 import { UserService } from '../../services/user.service';
-import {User} from "../../interfaces/user";
-import {Mario} from "../../interfaces/mario";
-import {SentMarioPayload} from "../../interfaces/sent-mario";
-
+import { User } from '../../interfaces/user';
+import { Mario } from '../../interfaces/mario';
+import { SentMarioPayload } from '../../interfaces/sent-mario';
 
 @Component({
   selector: 'app-add-marios',
@@ -31,6 +30,7 @@ export class AddMariosComponent implements OnInit {
   categories: Mario[] = [];
   marioTheme = '';
   marioMessage = '';
+  selectedCategoryType: string = '';
 
   constructor(
     private router: Router,
@@ -67,15 +67,17 @@ export class AddMariosComponent implements OnInit {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    console.log(value)
     if (value) {
-      const selectedUser = this.allUsers.find(user => user.firstName === value);
-      if (selectedUser) {
-        this.users.push(selectedUser);
+      const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === value);
+      if (selectedUser && selectedUser.uuid !== 'af6b2daf-e36c-43d5-82e5-b310033e49bc') {
+        const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
+        if (!userAlreadyAdded) {
+          this.users.push(selectedUser);
+        }
       }
     }
 
-    event.chipInput.clear();
+    event.chipInput!.clear();
   }
 
   remove(user: User): void {
@@ -88,42 +90,55 @@ export class AddMariosComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === event.option.viewValue);
-    console.log(selectedUser)
-    if (selectedUser) {
-      this.users.push(selectedUser);
+    if (selectedUser && selectedUser.uuid !== 'af6b2daf-e36c-43d5-82e5-b310033e49bc') {
+      const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
+      if (!userAlreadyAdded) {
+        this.users.push(selectedUser);
+      }
     }
 
     this.userCtrl.setValue(null);
   }
 
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allUsers
-      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue))
+      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== 'af6b2daf-e36c-43d5-82e5-b310033e49bc')
       .map(user => user.firstName + ' ' + user.lastName);
   }
 
   onSubmit() {
-    const selectedCategory = this.categories.find(category => category.type === this.marioTheme);
+    if (this.marioTheme.length > 20 || this.marioMessage.length > 200) {
+      console.error('Theme or comment length exceeds the limit.');
+      return;
+    }
 
+    const selectedCategory = this.categories.find(category => category.type === this.selectedCategoryType);
     if (!selectedCategory) {
-      console.error('Selected Mario not found.');
+      console.error('Selected Category not found.');
       return;
     }
 
     const payload: SentMarioPayload = {
-      mario: selectedCategory,
+      marioUuid: selectedCategory.uuid,
       theme: this.marioTheme,
       comment: this.marioMessage,
-      sender: 'af6b2daf-e36c-43d5-82e5-b310033e49bc',
-      recipients: this.users.map(user => user.uuid)
+      senderUuid: 'af6b2daf-e36c-43d5-82e5-b310033e49bc',
+      recipientUuids: this.users.map(user => user.uuid)
     };
 
-
     this.addSentMarios(payload);
+    console.log(payload);
+    alert('Mario sent successfully!');
   }
 
   private addSentMarios(payload: SentMarioPayload) {
+    this.sentMarioService.addSentMarios(payload);
+    console.log('Mario sent:', payload);
+    alert('Mario sent successfully!');
+    this.marioTheme = '';
+    this.marioMessage = '';
+    this.users = [];
   }
+
 }

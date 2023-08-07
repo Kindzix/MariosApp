@@ -16,9 +16,9 @@ export interface SentMario {
 }
 
 export interface SentMarioPayload {
-  mario: Mario;
+  marioUuid: string;
   theme: string;
   comment: string;
-  sender: string;
-  recipients: string[];
+  senderUuid: string;
+  recipientUuids: string[];
 }
