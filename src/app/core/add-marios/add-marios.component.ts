@@ -69,7 +69,7 @@ export class AddMariosComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === value);
-      if (selectedUser && selectedUser.uuid !== 'af6b2daf-e36c-43d5-82e5-b310033e49bc') {
+      if (selectedUser && selectedUser.uuid !== '3cf07289-51a4-48a8-8a46-5d253007459a') {
         const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
         if (!userAlreadyAdded) {
           this.users.push(selectedUser);
@@ -90,7 +90,7 @@ export class AddMariosComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === event.option.viewValue);
-    if (selectedUser && selectedUser.uuid !== 'af6b2daf-e36c-43d5-82e5-b310033e49bc') {
+    if (selectedUser && selectedUser.uuid !== '3cf07289-51a4-48a8-8a46-5d253007459a') {
       const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
       if (!userAlreadyAdded) {
         this.users.push(selectedUser);
@@ -103,7 +103,7 @@ export class AddMariosComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allUsers
-      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== 'af6b2daf-e36c-43d5-82e5-b310033e49bc')
+      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== '3cf07289-51a4-48a8-8a46-5d253007459a')
       .map(user => user.firstName + ' ' + user.lastName);
   }
 
@@ -123,7 +123,7 @@ export class AddMariosComponent implements OnInit {
       marioUuid: selectedCategory.uuid,
       theme: this.marioTheme,
       comment: this.marioMessage,
-      senderUuid: 'af6b2daf-e36c-43d5-82e5-b310033e49bc',
+      senderUuid: '3cf07289-51a4-48a8-8a46-5d253007459a',
       recipientUuids: this.users.map(user => user.uuid)
     };
 

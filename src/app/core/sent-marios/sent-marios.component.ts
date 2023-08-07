@@ -34,7 +34,7 @@ export class SentMariosComponent implements OnInit {
   }
 
   fetchData() {
-    const senderUuid = 'af6b2daf-e36c-43d5-82e5-b310033e49bc';
+    const senderUuid = '3cf07289-51a4-48a8-8a46-5d253007459a';
 
     this.sentMarioService.fetchSentMarios(senderUuid);
 

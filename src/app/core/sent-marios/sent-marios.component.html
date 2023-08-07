@@ -22,7 +22,7 @@
               <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
             </div>
             <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>
-            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 60) + '...' : mario.comment }}</div>
+            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 59) + '...' : mario.comment }}</div>
             <div class="more">See more</div>
             <div class="example-button-pop">
               <button mat-button color="primary" (click)="Openp(mario)"></button>

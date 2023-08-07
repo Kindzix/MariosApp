@@ -23,7 +23,7 @@
             <div class="marios-count">{{ sentMariosCount }}</div>
           </div>
           <div class="example-button-row">
-            <button mat-button (click)="onClickReceived()"></button>
+            <button mat-button (click)="onClickSent()"></button>
           </div>
         </div>
       </div>
@@ -45,14 +45,14 @@
           <div class="rectangle-mario">
             <div class="image-user">
               <img src="assets/user.png" alt="mario" />
-              <div class="from">From: {{ mario.sender.firstName }} {{ mario.sender.lastName }}</div>
+              <div class="from">From: {{ mario.sender.firstName }} {{ mario.sender.lastName.length > 6 ? mario.sender.lastName.slice(0, 4) + "..." : mario.sender.lastName }}</div>
             </div>
             <div class="image-star">
               <mat-icon [ngClass]="'star-icon-' + mario.mario.id">star</mat-icon>
               <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
             </div>
             <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>
-            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 60) + '...' : mario.comment }}</div>
+            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 59) + '...' : mario.comment }}</div>
             <div class="more">See more</div>
             <div class="example-button-pop">
               <button mat-button color="primary" (click)="Openpopup(mario)"></button>
@@ -72,7 +72,7 @@
               <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
             </div>
             <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>
-            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 60) + '...' : mario.comment }}</div>
+            <div class="message">{{ mario.comment.length > 30 ? mario.comment.slice(0, 59) + '...' : mario.comment }}</div>
             <div class="more">See more</div>
             <div class="example-button-pop">
               <button mat-button color="primary" (click)="Openp(mario)"></button>

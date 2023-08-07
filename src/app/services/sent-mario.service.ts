@@ -17,14 +17,14 @@ export class SentMarioService {
 
   constructor(private http: HttpClient) {}
 
-  fetchSentMarios(senderUuid: string = 'af6b2daf-e36c-43d5-82e5-b310033e49bc') {
+  fetchSentMarios(senderUuid: string = '3cf07289-51a4-48a8-8a46-5d253007459a') {
     return this.http.get<SentMario[]>(`${this.sentMariosUrl}/${senderUuid}`).subscribe((data) => {
       this.sentMarioData = data;
       this.sentMarios$.next(data);
     });
   }
 
-  fetchReceivedMarios(recipientUuid: string = 'af6b2daf-e36c-43d5-82e5-b310033e49bc') {
+  fetchReceivedMarios(recipientUuid: string = '3cf07289-51a4-48a8-8a46-5d253007459a') {
     return this.http.get<SentMario[]>(`${this.receivedMariosUrl}/${recipientUuid}`).subscribe((data) => {
       this.sentMarioData = data;
       this.receivedMarios$.next(data);
