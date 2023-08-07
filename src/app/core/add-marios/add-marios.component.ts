@@ -128,8 +128,6 @@ export class AddMariosComponent implements OnInit {
     };
 
     this.addSentMarios(payload);
-    console.log(payload);
-    alert('Mario sent successfully!');
   }
 
   private addSentMarios(payload: SentMarioPayload) {
