@@ -8,7 +8,6 @@
   justify-content: space-between;
 }
 
-
 .mario-close-button-row {
   width: 10px;
   height: 10px;
@@ -29,7 +28,6 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 27px;
-
   color: #EA808E;
 }
 
@@ -37,6 +35,8 @@
   position: absolute;
   bottom: 70%;
   right: 10%;
+  display: flex;
+  align-items: center;
   font-family: 'Open Sans', serif;
   font-style: normal;
   font-weight: 700;
@@ -45,12 +45,8 @@
   color: #000000;
 }
 
-.image-star-info img {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  right: 25px;
-  bottom: 15%;
+.image-star-info mat-icon {
+  margin-right: 5px;
 }
 
 .theme-info {
@@ -70,12 +66,11 @@
   position: absolute;
   width: 610px;
   height: 50px;
-  top:60%;
+  top: 60%;
   font-family: 'Open Sans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
   color: #A2A2A2;
-
 }

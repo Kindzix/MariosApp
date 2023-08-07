@@ -36,15 +36,14 @@
           <div class="input-container-category">
             <div class="category-label">Select category:</div>
             <mat-chip-listbox aria-label="Fish selection">
-              <mat-chip-option color="primary" *ngFor="let category of categories" [value]="category.type"
+              <mat-chip-option *ngFor="let category of categories" [value]="category.type"
                                (click)="selectedCategoryType = category.type">
                 <div class="chip-content">
-                  <div class="category-icon"></div>
+                  <mat-icon [ngClass]="getStarIconClass(category.type)">star</mat-icon>
                   <div class="category-name">{{ category.type }}</div>
                 </div>
               </mat-chip-option>
             </mat-chip-listbox>
-
           </div>
           <div class="input-container">
             <div class="title-container">Title</div>
@@ -54,9 +53,11 @@
             <div class="comment-container">Comment</div>
             <textarea id="message" [(ngModel)]="marioMessage" name="message" rows="4" required></textarea>
           </div>
+          <div class="input-container">
           <button type="submit" mat-raised-button color="primary" class="add-marios-button">
             <div class="send-text">SEND</div>
           </button>
+          </div>
         </form>
       </div>
     </div>

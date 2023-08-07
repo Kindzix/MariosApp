@@ -139,4 +139,12 @@ export class AddMariosComponent implements OnInit {
     this.users = [];
   }
 
+  getStarIconClass(categoryType: string): string {
+    const category = this.categories.find(cat => cat.type === categoryType);
+    if (category) {
+      return 'star-icon-' + category.id;
+    }
+    return 'star-icon';
+  }
+
 }
