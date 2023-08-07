@@ -4,7 +4,7 @@
     <div class="grid-mario-info">
       <div class="from-info">To: {{ data.mario.recipientFirstName}} {{ data.mario.recipientLastName}} </div>
       <div class="image-star-info">
-        <mat-icon>star</mat-icon>
+        <mat-icon [ngClass]="'star-icon-' + data.mario.mario.id">star</mat-icon>
         <div class="marios-info">{{ data.mario.mario.type }}</div>
       </div>
     </div>

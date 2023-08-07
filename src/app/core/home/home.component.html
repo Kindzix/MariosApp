@@ -48,7 +48,7 @@
               <div class="from">From: {{ mario.sender.firstName }} {{ mario.sender.lastName }}</div>
             </div>
             <div class="image-star">
-              <mat-icon>star</mat-icon>
+              <mat-icon [ngClass]="'star-icon-' + mario.mario.id">star</mat-icon>
               <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
             </div>
             <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>
@@ -68,7 +68,7 @@
               <div class="to">To: {{ mario.recipientFirstNamesList }} {{ mario.recipientLastNamesList }}</div>
             </div>
             <div class="image-star">
-              <mat-icon>star</mat-icon>
+              <mat-icon [ngClass]="'star-icon-' + mario.mario.id">star</mat-icon>
               <div class="marios">{{ mario.mario.type.length > 15 ? mario.mario.type.slice(0, 18) + '...' : mario.mario.type }}</div>
             </div>
             <div class="theme">T: {{ mario.theme.length > 15 ? mario.theme.slice(0, 18) + '...' : mario.theme }}</div>

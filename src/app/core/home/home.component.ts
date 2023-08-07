@@ -4,8 +4,8 @@ import { InfoComponent } from "../info/info.component";
 import { Router } from "@angular/router";
 import { SentMarioService } from "../../services/sent-mario.service";
 import { SentMario } from "../../interfaces/sent-mario";
-import { last } from "rxjs";
 import {InfoMariosComponent} from "../info-marios/info-marios.component";
+import {Mario} from "../../interfaces/mario";
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   sentMariosCount: number = 0;
   lastMariosData: SentMario[] = [];
   lastReceivedMariosData: SentMario[] = [];
+  categories: Mario[] = [];
 
   constructor(
     private dialog: MatDialog,

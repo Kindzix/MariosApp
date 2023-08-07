@@ -111,11 +111,6 @@ html {
   top: 30%;
 }
 
-.image-star img {
-  width: 17px;
-  height: 17px;
-}
-
 .marios {
   position: absolute;
   width: 194px;
@@ -193,3 +188,32 @@ html {
   justify-content: space-between;
 }
 
+.mat-icon.star-icon {
+  font-size: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.mat-icon.star-icon-1 {
+  color: #EA808E;
+}
+
+.mat-icon.star-icon-2 {
+  color: blue;
+}
+
+.mat-icon.star-icon-3 {
+  color: gold;
+}
+
+.mat-icon.star-icon-4 {
+  color: green;
+}
+
+.mat-icon.star-icon-5 {
+  color: red;
+}
+
+.mat-icon.star-icon-6 {
+  color: indigo;
+}
