@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatChipsModule} from '@angular/material/chips';
+import {AddMariosComponent} from "./core/add-marios/add-marios.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {MatChipsModule} from '@angular/material/chips';
     ReceivedMariosComponent,
     SentMariosComponent,
     InfoMariosComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddMariosComponent
   ],
   imports: [
     BrowserModule,

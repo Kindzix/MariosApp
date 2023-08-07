@@ -1,52 +1,48 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
-import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
-import {AsyncPipe, NgFor} from '@angular/common';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {MatButtonModule} from "@angular/material/button";
-import {Mario} from "../../interfaces/mario";
-import {MatDialog} from "@angular/material/dialog";
-import {SentMarioService} from "../../services/sent-mario.service";
-import {MarioService} from "../../services/mario.service";
-import {UserService} from "../../services/user.service";
-import {SentMarioPayload} from "../../interfaces/sent-mario";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+
+import { SentMarioService } from '../../services/sent-mario.service';
+import { MarioService } from '../../services/mario.service';
+import { UserService } from '../../services/user.service';
 import {User} from "../../interfaces/user";
+import {Mario} from "../../interfaces/mario";
+import {SentMarioPayload} from "../../interfaces/sent-mario";
+
 
 @Component({
   selector: 'app-add-marios',
   templateUrl: './add-marios.component.html',
-  styleUrls: ['./add-marios.component.css'],
-  standalone: true,
-  imports: [FormsModule,
-    MatFormFieldModule,
-    MatChipsModule,
-    NgFor,
-    MatIconModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    AsyncPipe, MatButtonModule,
-  ],
+  styleUrls: ['./add-marios.component.css']
 })
-export class AddMariosComponent {
+export class AddMariosComponent implements OnInit {
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [13, 188];
 
+  users: User[] = [];
+  allUsers: User[] = [];
+  filteredUsers: Observable<string[]>;
   userCtrl = new FormControl();
 
   categories: Mario[] = [];
   marioTheme = '';
   marioMessage = '';
-  separatorKeysCodes: any;
-  users: User[] = [];
 
   constructor(
-    private dialog: MatDialog,
     private router: Router,
     private sentMarioService: SentMarioService,
     private marioService: MarioService,
-    private userService: UserService,
-  ) { }
+    private userService: UserService
+  ) {
+    this.filteredUsers = this.userCtrl.valueChanges.pipe(
+      startWith(''),
+      map((userInput: string) => userInput ? this._filter(userInput) : this.allUsers.map(user => user.firstName + ' ' + user.lastName))
+    );
+  }
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -59,7 +55,7 @@ export class AddMariosComponent {
 
   fetchUsers() {
     this.userService.users.subscribe((data) => {
-      this.users = data;
+      this.allUsers = data;
     });
   }
 
@@ -69,27 +65,65 @@ export class AddMariosComponent {
     });
   }
 
-  onSubmit() {
-    const selectedMario = this.categories.find(mario => mario.type);
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    console.log(value)
+    if (value) {
+      const selectedUser = this.allUsers.find(user => user.firstName === value);
+      if (selectedUser) {
+        this.users.push(selectedUser);
+      }
+    }
 
-    if (!selectedMario) {
+    event.chipInput.clear();
+  }
+
+  remove(user: User): void {
+    const index = this.users.indexOf(user);
+
+    if (index >= 0) {
+      this.users.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === event.option.viewValue);
+    console.log(selectedUser)
+    if (selectedUser) {
+      this.users.push(selectedUser);
+    }
+
+    this.userCtrl.setValue(null);
+  }
+
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allUsers
+      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue))
+      .map(user => user.firstName + ' ' + user.lastName);
+  }
+
+  onSubmit() {
+    const selectedCategory = this.categories.find(category => category.type === this.marioTheme);
+
+    if (!selectedCategory) {
       console.error('Selected Mario not found.');
       return;
     }
 
     const payload: SentMarioPayload = {
-      mario: selectedMario,
+      mario: selectedCategory,
       theme: this.marioTheme,
       comment: this.marioMessage,
       sender: 'af6b2daf-e36c-43d5-82e5-b310033e49bc',
-      recipients: ['af6b2daf-e36c-43d5-82e5-b310033e49bc']
+      recipients: this.users.map(user => user.uuid)
     };
 
-    //this.addSentMarios(payload);
+
+    this.addSentMarios(payload);
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.userCtrl.setValue(null);
+  private addSentMarios(payload: SentMarioPayload) {
   }
-
 }
