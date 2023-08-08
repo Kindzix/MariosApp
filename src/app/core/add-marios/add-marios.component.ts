@@ -108,6 +108,22 @@ export class AddMariosComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if (!this.selectedCategoryType) {
+      console.error('No category selected.');
+      return;
+    }
+
+    if (!this.marioTheme) {
+      console.error('No title entered.');
+      return;
+    }
+
+    if (!this.marioMessage) {
+      console.error('No comment entered.');
+      return;
+    }
+
     if (this.marioTheme.length > 20 || this.marioMessage.length > 250) {
       console.error('Theme or comment length exceeds the limit.');
       return;
@@ -146,5 +162,6 @@ export class AddMariosComponent implements OnInit {
     }
     return 'star-icon';
   }
+
 
 }

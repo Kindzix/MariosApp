@@ -30,9 +30,12 @@
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
+            <div *ngIf="marioForm.submitted && users.length === 0" class="error-message">
+              Please select a user.
+            </div>
           </div>
         </div>
-        <form (submit)="onSubmit()">
+        <form (submit)="onSubmit()" #marioForm="ngForm" novalidate>
           <div class="input-container-category">
             <div class="category-label">Select category:</div>
             <mat-chip-listbox aria-label="Fish selection">
@@ -44,19 +47,33 @@
                 </div>
               </mat-chip-option>
             </mat-chip-listbox>
+            <div *ngIf="marioForm.submitted && !selectedCategoryType" class="error-message">
+              Please select a category.
+            </div>
           </div>
           <div class="input-container">
             <div class="title-container">Title</div>
-            <input type="text" id="theme" [(ngModel)]="marioTheme" name="theme" required>
+            <input type="text" maxlength="50" id="theme" [(ngModel)]="marioTheme" name="theme" required class="ng-touched"
+                   [class.ng-invalid]="(marioForm.submitted && marioForm.controls['theme'].errors) || (!marioTheme && marioForm.submitted)">
+            <div *ngIf="marioForm.submitted && (!marioTheme || marioMessage.length === 0)" class="error-message">
+              Please enter a theme.
+            </div>
           </div>
           <div class="input-container">
             <div class="comment-container">Comment</div>
-            <textarea id="message" [(ngModel)]="marioMessage" name="message" rows="4" required></textarea>
+            <textarea maxlength="255" id="message" [(ngModel)]="marioMessage" name="message" rows="4" required class="ng-touched"
+                      [class.ng-invalid]="(marioForm.submitted && marioForm.controls['message'].errors) || (!marioMessage && marioForm.submitted)"></textarea>
+            <div class="character-count">
+              {{ marioMessage.length }} / 255 characters
+            </div>
+            <div *ngIf="marioForm.submitted && (!marioMessage || marioMessage.length === 0)" class="error-message">
+              Please enter a comment.
+            </div>
           </div>
           <div class="input-container">
-          <button type="submit" mat-raised-button color="primary" class="add-marios-button">
-            <div class="send-text">SEND</div>
-          </button>
+            <button type="submit" mat-raised-button color="primary" class="add-marios-button">
+              <div class="send-text">SEND</div>
+            </button>
           </div>
         </form>
       </div>
