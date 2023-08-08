@@ -1,76 +1,65 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: -10px;
+}
+
 .grid-info {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .grid-mario-info {
   display: flex;
   justify-content: space-between;
-}
-
-.mario-close-button-row {
-  width: 10px;
-  height: 10px;
-}
-
-.mario-close-button-row button {
-  left: 655px;
-  top: -100px;
-}
-
-.from-info {
-  position: absolute;
-  width: 216px;
-  height: 27px;
-  bottom: 70%;
-  font-family: 'Open Sans', serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 27px;
-  color: #EA808E;
+  align-items: center;
 }
 
 .image-star-info {
-  position: absolute;
-  bottom: 70%;
-  right: 10%;
   display: flex;
   align-items: center;
+  margin-right: 10px;
+}
+
+.to-marios-info {
+  display: flex;
+  align-items: center;
+}
+
+.to-info,
+.marios-info,
+.theme-info,
+.message-info {
   font-family: 'Open Sans', serif;
-  font-style: normal;
   font-weight: 700;
+}
+
+.to-info {
+  font-size: 20px;
+  color: #EA808E;
+  margin-right: 10px;
+}
+
+.marios-info {
   font-size: 22px;
-  line-height: 30px;
   color: #000000;
 }
 
-.image-star-info mat-icon {
-  margin-right: 5px;
-}
-
 .theme-info {
-  position: absolute;
-  width: 510px;
-  height: 34px;
-  top: 35%;
-  font-family: 'Open Sans', serif;
-  font-style: normal;
-  font-weight: 700;
   font-size: 25px;
-  line-height: 34px;
   color: #494949;
+  margin-top: 20px;
 }
 
 .message-info {
-  position: absolute;
-  width: 610px;
-  height: 50px;
-  top: 60%;
-  font-family: 'Open Sans', serif;
-  font-style: normal;
-  font-weight: 700;
   font-size: 18px;
-  line-height: 25px;
   color: #A2A2A2;
+  margin-top: 20px;
+}
+
+.mario-close-button-row {
+  position: absolute;
+  right: 10px;
 }

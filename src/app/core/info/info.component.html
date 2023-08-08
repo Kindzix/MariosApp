@@ -1,20 +1,20 @@
-<h1 mat-dialog-title></h1>
-<div mat-dialog-content>
-  <div class="grid-info">
-    <div class="grid-mario-info">
-      <div class="from-info">From: {{ data.mario.sender.firstName }} {{ data.mario.sender.lastName }} </div>
-      <div class="image-star-info">
-        <mat-icon [ngClass]="'star-icon-' + data.mario.mario.id">star</mat-icon>
-        <div class="marios-info">{{ data.mario.mario.type }}</div>
-      </div>
-    </div>
-    <div class="theme-info">T: {{ data.mario.theme }}</div>
-    <div class="message-info">{{ data.mario.comment }}</div>
-  </div>
-</div>
 <div mat-dialog-actions>
   <div class="mario-close-button-row">
     <button mat-icon-button (click)="onClickClose()">
-      <mat-icon>close</mat-icon></button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content class="dialog-content">
+  <div class="grid-info">
+    <div class="to-marios-info">
+      <div class="to-info">From: {{ data.mario.sender.firstName }} {{ data.mario.sender.lastName }} </div>
+      <div class="image-star-info">
+        <mat-icon [ngClass]="'star-icon-' + data.mario.mario.id">star</mat-icon>
+      </div>
+      <div class="marios-info">{{ data.mario.mario.type }}</div>
+    </div>
+    <div class="theme-info">T: {{ data.mario.theme }}</div>
+    <div class="message-info">{{ data.mario.comment }}</div>
   </div>
 </div>

@@ -69,7 +69,7 @@ export class AddMariosComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === value);
-      if (selectedUser && selectedUser.uuid !== '3cf07289-51a4-48a8-8a46-5d253007459a') {
+      if (selectedUser && selectedUser.uuid !== '8885c1a9-3dfc-453d-bd37-0129d0f62473') {
         const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
         if (!userAlreadyAdded) {
           this.users.push(selectedUser);
@@ -90,7 +90,7 @@ export class AddMariosComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === event.option.viewValue);
-    if (selectedUser && selectedUser.uuid !== '3cf07289-51a4-48a8-8a46-5d253007459a') {
+    if (selectedUser && selectedUser.uuid !== '8885c1a9-3dfc-453d-bd37-0129d0f62473') {
       const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
       if (!userAlreadyAdded) {
         this.users.push(selectedUser);
@@ -103,12 +103,12 @@ export class AddMariosComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allUsers
-      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== '3cf07289-51a4-48a8-8a46-5d253007459a')
+      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== '8885c1a9-3dfc-453d-bd37-0129d0f62473')
       .map(user => user.firstName + ' ' + user.lastName);
   }
 
   onSubmit() {
-    if (this.marioTheme.length > 20 || this.marioMessage.length > 200) {
+    if (this.marioTheme.length > 20 || this.marioMessage.length > 250) {
       console.error('Theme or comment length exceeds the limit.');
       return;
     }
@@ -123,7 +123,7 @@ export class AddMariosComponent implements OnInit {
       marioUuid: selectedCategory.uuid,
       theme: this.marioTheme,
       comment: this.marioMessage,
-      senderUuid: '3cf07289-51a4-48a8-8a46-5d253007459a',
+      senderUuid: '8885c1a9-3dfc-453d-bd37-0129d0f62473',
       recipientUuids: this.users.map(user => user.uuid)
     };
 

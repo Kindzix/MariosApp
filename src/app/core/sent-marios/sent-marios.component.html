@@ -15,7 +15,7 @@
           <div class="rectangle-mario">
             <div class="image-user">
               <img src="assets/user.png" alt="mario" />
-              <div class="to">To: {{ mario.recipientFirstName }} {{ mario.recipientLastName }} {{ !last ? ', ' : '' }}</div>
+              <div class="to">To: {{  mario.recipientNames.length > 15 ? mario.recipientNames.slice(0, 15) + "..." : mario.recipientNames }} </div>
             </div>
             <div class="image-star">
               <mat-icon [ngClass]="'star-icon-' + mario.mario.id">star</mat-icon>

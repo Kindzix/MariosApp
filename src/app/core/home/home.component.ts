@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 import { SentMarioService } from "../../services/sent-mario.service";
 import { SentMario } from "../../interfaces/sent-mario";
 import {InfoMariosComponent} from "../info-marios/info-marios.component";
-import {Mario} from "../../interfaces/mario";
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,6 @@ export class HomeComponent implements OnInit {
   sentMariosCount: number = 0;
   lastMariosData: SentMario[] = [];
   lastReceivedMariosData: SentMario[] = [];
-  categories: Mario[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -58,8 +56,8 @@ export class HomeComponent implements OnInit {
   }
 
   fetchData() {
-    const senderUuid = '3cf07289-51a4-48a8-8a46-5d253007459a';
-    const recipientUuid = '3cf07289-51a4-48a8-8a46-5d253007459a';
+    const senderUuid = '8885c1a9-3dfc-453d-bd37-0129d0f62473';
+    const recipientUuid = '8885c1a9-3dfc-453d-bd37-0129d0f62473';
 
     this.sentMarioService.fetchSentMarios(senderUuid);
     this.sentMarioService.fetchReceivedMarios(recipientUuid);
@@ -77,6 +75,7 @@ export class HomeComponent implements OnInit {
 
   private updateSentLastMariosData(marios: SentMario[]) {
     this.lastReceivedMariosData = marios.slice(0, 9);
+    console.log(marios);
   }
 
   private updateReceivedLastMariosData(marios: SentMario[]) {

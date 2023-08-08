@@ -9,10 +9,7 @@ export interface SentMario {
   comment: string;
   sender: User;
   recipients: User[];
-  recipientFirstNamesList: string[];
-  recipientLastNamesList: string[];
-  recipientLastName: string;
-  recipientFirstName: string;
+  recipientNames: string[];
 }
 
 export interface SentMarioPayload {

@@ -7,7 +7,6 @@ import { SentMario, SentMarioPayload } from '../interfaces/sent-mario';
   providedIn: 'root',
 })
 export class SentMarioService {
-  private readonly sendMariosUrl = '/api/marios/sent/all';
   private readonly sentMariosUrl = '/api/marios/sent';
   private readonly receivedMariosUrl = '/api/marios/received';
   private readonly sentMarioAddUrl = '/api/marios/send';
@@ -17,14 +16,14 @@ export class SentMarioService {
 
   constructor(private http: HttpClient) {}
 
-  fetchSentMarios(senderUuid: string = '3cf07289-51a4-48a8-8a46-5d253007459a') {
+  fetchSentMarios(senderUuid: string = '8885c1a9-3dfc-453d-bd37-0129d0f62473') {
     return this.http.get<SentMario[]>(`${this.sentMariosUrl}/${senderUuid}`).subscribe((data) => {
       this.sentMarioData = data;
       this.sentMarios$.next(data);
     });
   }
 
-  fetchReceivedMarios(recipientUuid: string = '3cf07289-51a4-48a8-8a46-5d253007459a') {
+  fetchReceivedMarios(recipientUuid: string = '8885c1a9-3dfc-453d-bd37-0129d0f62473') {
     return this.http.get<SentMario[]>(`${this.receivedMariosUrl}/${recipientUuid}`).subscribe((data) => {
       this.sentMarioData = data;
       this.receivedMarios$.next(data);
