@@ -119,7 +119,7 @@ body {
 }
 
 .input-container {
-  margin: 30px 20px;
+  margin: 20px 20px;
   width: 975px;
 }
 
@@ -197,23 +197,23 @@ button[type="submit"] {
 
 .title-container {
   width: 53px;
-  height: 30px;
+  height: 20px;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
-  line-height: 30px;
+  line-height: 10px;
   color: #000000;
 }
 
 .comment-container {
   width: 975px;
-  height: 30px;
+  height: 20px;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
-  line-height: 30px;
+  line-height: 10px;
   color: #000000;
 }
 

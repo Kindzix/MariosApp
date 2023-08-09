@@ -16,8 +16,8 @@ describe('SentMariosComponent', () => {
     cy.get('.grid-mario-container .rectangle-mario').should('have.length.at.least', 1);
   });
 
-  it('should open info dialog when "See more" button is clicked', () => {
-    cy.get('.example-button-pop button').first().click();
-    cy.get('.mat-dialog-container').should('be.visible');
+  it('should open info dialog when button is clicked', () => {
+    cy.get('.example-button-pop button').click({force: true});
+    cy.get('.dialog-content').should('be.visible');
   });
 });

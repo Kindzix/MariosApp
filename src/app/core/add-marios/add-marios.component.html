@@ -55,6 +55,9 @@
             <div class="title-container">Title</div>
             <input type="text" maxlength="50" id="theme" [(ngModel)]="marioTheme" name="theme" required class="ng-touched"
                    [class.ng-invalid]="(marioForm.submitted && marioForm.controls['theme'].errors) || (!marioTheme && marioForm.submitted)">
+            <div class="character-count">
+              {{ marioTheme.length }} / 50 characters
+            </div>
             <div *ngIf="marioForm.submitted && (!marioTheme || marioMessage.length === 0)" class="error-message">
               Please enter a theme.
             </div>

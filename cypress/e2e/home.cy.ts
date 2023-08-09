@@ -33,4 +33,6 @@ describe('HomeComponent', () => {
   it('should display last sent marios', () => {
     cy.get('.grid-mario-container .rectangle-mario').should('have.length.at.least', 1);
   });
+
+
 });

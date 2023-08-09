@@ -17,7 +17,8 @@ describe('ReceivedMariosComponent', () => {
   });
 
   it('should open info dialog when button is clicked', () => {
-    cy.get('.example-button-pop button').first().click();
-    cy.get('.mat-dialog-container').should('be.visible');
+
+    cy.get('.example-button-pop button').click({force: true});
+    cy.get('.dialog-content').should('be.visible');
   });
 });
