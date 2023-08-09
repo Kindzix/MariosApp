@@ -69,7 +69,7 @@ export class AddMariosComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === value);
-      if (selectedUser && selectedUser.uuid !== '8885c1a9-3dfc-453d-bd37-0129d0f62473') {
+      if (selectedUser && selectedUser.uuid !== '36a1c94a-e78e-4c95-8888-24feccbca97d') {
         const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
         if (!userAlreadyAdded) {
           this.users.push(selectedUser);
@@ -90,7 +90,7 @@ export class AddMariosComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedUser = this.allUsers.find(user => (user.firstName + ' ' + user.lastName) === event.option.viewValue);
-    if (selectedUser && selectedUser.uuid !== '8885c1a9-3dfc-453d-bd37-0129d0f62473') {
+    if (selectedUser && selectedUser.uuid !== '36a1c94a-e78e-4c95-8888-24feccbca97d') {
       const userAlreadyAdded = this.users.find(user => user.uuid === selectedUser.uuid);
       if (!userAlreadyAdded) {
         this.users.push(selectedUser);
@@ -103,7 +103,7 @@ export class AddMariosComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allUsers
-      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== '8885c1a9-3dfc-453d-bd37-0129d0f62473')
+      .filter(user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(filterValue) && user.uuid !== '36a1c94a-e78e-4c95-8888-24feccbca97d')
       .map(user => user.firstName + ' ' + user.lastName);
   }
 
@@ -139,7 +139,7 @@ export class AddMariosComponent implements OnInit {
       marioUuid: selectedCategory.uuid,
       theme: this.marioTheme,
       comment: this.marioMessage,
-      senderUuid: '8885c1a9-3dfc-453d-bd37-0129d0f62473',
+      senderUuid: '36a1c94a-e78e-4c95-8888-24feccbca97d',
       recipientUuids: this.users.map(user => user.uuid)
     };
 
@@ -153,6 +153,7 @@ export class AddMariosComponent implements OnInit {
     this.marioTheme = '';
     this.marioMessage = '';
     this.users = [];
+    this.router.navigateByUrl('');
   }
 
   getStarIconClass(categoryType: string): string {

@@ -10,6 +10,8 @@ export interface SentMario {
   sender: User;
   recipients: User[];
   recipientNames: string[];
+  sentDateTime: Date;
+  isSender: boolean;
 }
 
 export interface SentMarioPayload {

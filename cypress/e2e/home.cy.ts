@@ -19,11 +19,11 @@ describe('HomeComponent', () => {
   });
 
   it('should display correct count of received marios', () => {
-    cy.get('.marios-count').eq(0).should('have.text', '0');
+    cy.get('.marios-count').eq(0).should('have.text', '0'); //
   });
 
   it('should display correct count of sent marios', () => {
-    cy.get('.marios-count').eq(1).should('have.text', '0');
+    cy.get('.marios-count').eq(1).should('have.text', '0'); //
   });
 
   it('should display last received marios', () => {

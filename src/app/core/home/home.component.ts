@@ -56,30 +56,34 @@ export class HomeComponent implements OnInit {
   }
 
   fetchData() {
-    const senderUuid = '8885c1a9-3dfc-453d-bd37-0129d0f62473';
-    const recipientUuid = '8885c1a9-3dfc-453d-bd37-0129d0f62473';
+    const senderUuid = '36a1c94a-e78e-4c95-8888-24feccbca97d';
+    const recipientUuid = '36a1c94a-e78e-4c95-8888-24feccbca97d';
 
     this.sentMarioService.fetchSentMarios(senderUuid);
     this.sentMarioService.fetchReceivedMarios(recipientUuid);
 
     this.sentMarioService.sentMarios.subscribe((sentMarios) => {
       this.sentMariosCount = sentMarios.length;
-      this.updateSentLastMariosData(sentMarios);
-    });
-
-    this.sentMarioService.receivedMarios.subscribe((receivedMarios) => {
-      this.receivedMariosCount = receivedMarios.length;
-      this.updateReceivedLastMariosData(receivedMarios);
+      this.sentMarioService.receivedMarios.subscribe((receivedMarios) => {
+        this.receivedMariosCount = receivedMarios.length;
+        const allMarios = [...sentMarios.map(mario => ({ ...mario, isSender: true })), ...receivedMarios.map(mario => ({ ...mario, isSender: false }))];
+        this.updateLastMariosData(allMarios);
+      });
     });
   }
 
-  private updateSentLastMariosData(marios: SentMario[]) {
-    this.lastReceivedMariosData = marios.slice(0, 9);
-    console.log(marios);
-  }
+  private updateLastMariosData(allMarios: SentMario[]) {
+    const sortedMarios = allMarios.sort((a, b) => {
+      const dateA = a.sentDateTime instanceof Date ? a.sentDateTime.getTime() : new Date(a.sentDateTime).getTime();
+      const dateB = b.sentDateTime instanceof Date ? b.sentDateTime.getTime() : new Date(b.sentDateTime).getTime();
 
-  private updateReceivedLastMariosData(marios: SentMario[]) {
-    this.lastMariosData = marios.slice(0, 9);
+      return dateB - dateA;
+    });
+
+    console.log(sortedMarios)
+
+    this.lastMariosData = sortedMarios.slice(0,9)
+
   }
 
 }
