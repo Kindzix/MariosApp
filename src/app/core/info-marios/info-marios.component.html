@@ -11,11 +11,10 @@
       <div class="to-info">To: {{ data.mario.recipientNames }} </div>
       <div class="image-star-info">
         <mat-icon [ngClass]="'star-icon-' + data.mario.mario.id">star</mat-icon>
+        <div class="marios-info">{{ data.mario.mario.type }}</div>
       </div>
-      <div class="marios-info">{{ data.mario.mario.type }}</div>
     </div>
     <div class="theme-info">T: {{ data.mario.theme }}</div>
     <div class="message-info">{{ data.mario.comment }}</div>
   </div>
 </div>
-

@@ -68,23 +68,14 @@
   top: 50%;
 }
 
-.example-button-row {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.example-button-row button {
-  width: 100%;
-  height: 100%;
-}
-
+.example-button-row,
 .example-button-pop {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
+.example-button-row button,
 .example-button-pop button {
   width: 100%;
   height: 100%;

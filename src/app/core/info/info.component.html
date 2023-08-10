@@ -11,8 +11,8 @@
       <div class="to-info">From: {{ data.mario.sender.firstName }} {{ data.mario.sender.lastName }} </div>
       <div class="image-star-info">
         <mat-icon [ngClass]="'star-icon-' + data.mario.mario.id">star</mat-icon>
+        <div class="marios-info">{{ data.mario.mario.type }}</div>
       </div>
-      <div class="marios-info">{{ data.mario.mario.type }}</div>
     </div>
     <div class="theme-info">T: {{ data.mario.theme }}</div>
     <div class="message-info">{{ data.mario.comment }}</div>

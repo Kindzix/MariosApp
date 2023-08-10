@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: -10px;
 }
 
 .grid-info {
@@ -24,7 +25,7 @@
 
 .to-marios-info {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 }
 
 .to-info,
@@ -38,7 +39,7 @@
 .to-info {
   font-size: 20px;
   color: #EA808E;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .marios-info {
@@ -60,4 +61,5 @@
 
 .mario-close-button-row {
   position: absolute;
+  right: 10px;
 }
